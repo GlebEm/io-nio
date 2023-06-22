@@ -24,10 +24,9 @@ public class Solution {
 
     public static void main(String... args) throws IOException {
         try (
-                FileOutputStream outputStream = new FileOutputStream(args[0]);
-                InputStream is = Solution.class.getClassLoader().getResourceAsStream(args[1]);
+                FileOutputStream outputStream = new FileOutputStream("C:/Users/Admin/Desktop/Task1928/Test.txt");
+                InputStream is = Solution.class.getClassLoader().getResourceAsStream(" ");
         ) {
-            ;
             byte[] b = new byte[is.available()];
             outputStream.write(is.read(b));
 
@@ -51,7 +50,7 @@ public class Solution {
                 }
             }
 
-            if (result instanceof A) {
+            if (result instanceof C) { //если и хотим резалт сузить до С , надо сверяться с С или его наследником
                 C p = (C) result;
                 System.out.println(p.getClass().getSimpleName());
             }

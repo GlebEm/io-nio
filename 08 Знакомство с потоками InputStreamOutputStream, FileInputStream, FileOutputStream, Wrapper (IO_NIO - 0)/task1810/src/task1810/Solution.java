@@ -1,28 +1,35 @@
 package task1810;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 /* 
 DownloadException
-1 РЎС‡РёС‚С‹РІР°С‚СЊ СЃ РєРѕРЅСЃРѕР»Рё РёРјРµРЅР° С„Р°Р№Р»РѕРІ.
-2 Р•СЃР»Рё С„Р°Р№Р» РјРµРЅСЊС€Рµ 1000 Р±Р°Р№С‚, С‚Рѕ:
-2.1 Р—Р°РєСЂС‹С‚СЊ РїРѕС‚РѕРєРё СЂР°Р±РѕС‚С‹ СЃ С„Р°Р№Р»Р°РјРё.
-2.2 Р’С‹Р±СЂРѕСЃРёС‚СЊ РёСЃРєР»СЋС‡РµРЅРёРµ DownloadException.
+1 Считывать с консоли имена файлов.
+2 Если файл меньше 1000 байт, то:
+2.1 Закрыть потоки работы с файлами.
+2.2 Выбросить исключение DownloadException.
 
 
 Requirements:
-1. РџСЂРѕРіСЂР°РјРјР° РґРѕР»Р¶РЅР° СЃС‡РёС‚Р°С‚СЊ РёРјРµРЅР° С„Р°Р№Р»РѕРІ СЃ РєРѕРЅСЃРѕР»Рё.
-2. Р”Р»СЏ С‡С‚РµРЅРёСЏ РёР· С„Р°Р№Р»РѕРІ РёСЃРїРѕР»СЊР·СѓР№ РїРѕС‚РѕРє FileInputStream.
-3. РџСЂРѕРіСЂР°РјРјР° РґРѕР»Р¶РЅР° СЂР°Р±РѕС‚Р°С‚СЊ, РїРѕРєР° РІРІРµРґРµРЅРЅС‹Р№ С„Р°Р№Р» РЅРµ РѕРєР°Р¶РµС‚СЃСЏ РјРµРЅСЊС€Рµ 1000 Р±Р°Р№С‚.
-4. РџСЂРѕРіСЂР°РјРјР° РґРѕР»Р¶РЅР° Р·Р°РІРµСЂС€РёС‚СЊСЃСЏ РёСЃРєР»СЋС‡РµРЅРёРµРј DownloadException.
-5. РџРѕС‚РѕРє FileInputStream РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ Р·Р°РєСЂС‹С‚.*/
+1. Программа должна считать имена файлов с консоли.
+2. Для чтения из файлов используй поток FileInputStream.
+3. Программа должна работать, пока введенный файл не окажется меньше 1000 байт.
+4. Программа должна завершиться исключением DownloadException.
+5. Поток FileInputStream должен быть закрыт.*/
 
 public class Solution {
-    public static void main(String[] args) throws DownloadException {
-
+    public static void main(String[] args) throws DownloadException, IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        while (true) {                                                 // C:/Users/Admin/Desktop/task1810/file1.txt  1-3
+            String x = reader.readLine();
+            FileInputStream fis = new FileInputStream(x);
+            if (fis.available()< 1000){
+                reader.close();
+                fis.close();
+                System.out.println("файл меньше 1000 байт");
+                throw new DownloadException();
+            }
+        }
     }
 
     public static class DownloadException extends Exception {

@@ -42,5 +42,18 @@ public class Solution {
             component.run();
         }
     }
+    public static class DecoratorMyRunnableImpl implements Runnable{
+        private Runnable component1;
+        public DecoratorMyRunnableImpl(Runnable component1) {
+            this.component1 = component1;
+        }
+
+        @Override
+        public void run() {
+            System.out.println("DecoratorMyRunnableImpl body");
+            component1.run();
+
+        }
+    }
 
 }

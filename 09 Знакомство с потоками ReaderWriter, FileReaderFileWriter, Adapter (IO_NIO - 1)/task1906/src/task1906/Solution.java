@@ -24,6 +24,26 @@ Requirements:
 6. Поток записи в файл (FileWriter) должен быть закрыт.*/
 
 public class Solution {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Считываем путь к первому файлу с консоли");
+        String file1 = reader.readLine(); //   C:/Users/Admin/Desktop/Task1906/file1.txt
+        System.out.println("Считываем путь ко второму файлу");
+        String file2 = reader.readLine(); //   C:/Users/Admin/Desktop/Task1906/file2.txt
+//        reader.close();
+        FileReader fileReader = new FileReader(file1);
+       // fileReader.close();
+        FileWriter fileWriter = new FileWriter(file2, false); //фолс чтобы обнулять файл перед записью новых данных
+        int c;
+        int i = 0;
+        while ((c = fileReader.read()) != -1) {    //когда закончатся символы в первом файле вернется -1 на ридер
+            i++;
+            if (i % 2 == 0) {
+                fileWriter.append((char) c); // //аппенд для посимвольной записи
+            }
+        }
+        fileReader.close();
+        fileWriter.close();
+        reader.close();
     }
 }

@@ -1,9 +1,6 @@
 package task1907;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 /* 
 Считаем слово
@@ -21,6 +18,24 @@ Requirements:
 5. Программа должна выводить в консоль количество слов "world", которые встречаются в файле.*/
 
 public class Solution {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String file = reader.readLine();  //   C:/Users/Admin/Desktop/task1907/Test.txt
+        FileReader fileReader = new FileReader(file);
+        int c;
+        int i =0;
+        int countWorld = 1;
+        while ((c=fileReader.read())!=-1){
+            i++;
+            System.out.print((char)c);
+            if (i%6==0){
+                System.out.print(" ");
+                countWorld++;
+            }
+        }
+        System.out.println();
+        System.out.println("Слово world встречается "+countWorld+" раз");
+        reader.close();
+        fileReader.close();
     }
 }

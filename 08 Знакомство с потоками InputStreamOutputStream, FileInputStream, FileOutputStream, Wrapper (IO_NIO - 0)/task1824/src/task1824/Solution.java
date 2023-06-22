@@ -5,7 +5,8 @@ import java.io.*;
 /* 
 Файлы и исключения
 Читайте с консоли имена файлов.
-Если файла не существует (передано неправильное имя файла), то перехватить исключение FileNotFoundException, вывести в консоль переданное неправильное имя файла и завершить работу программы.
+Если файла не существует (передано неправильное имя файла), то перехватить исключение FileNotFoundException,
+вывести в консоль переданное неправильное имя файла и завершить работу программы.
 Закрыть потоки.
 Не используй System.exit();
 
@@ -19,6 +20,19 @@ Requirements:
 6. Команду "System.exit();" использовать нельзя.*/
 
 public class Solution {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        FileInputStream file = null;
+        while (true){
+            String filepath = reader.readLine();
+            try {
+                file = new FileInputStream(filepath);
+                file.close();
+            }catch (FileNotFoundException e){
+                System.out.println(filepath);
+                reader.close();
+          return; //выходим из мейна
+            }
+        }
     }
 }
